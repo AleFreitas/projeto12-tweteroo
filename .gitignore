@@ -1,2 +1,4 @@
 #ignores front end sample
 front-end/
+#ignores node_modules file
+node_modules/
