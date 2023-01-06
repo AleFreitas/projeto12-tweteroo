@@ -58,7 +58,7 @@ app.post("/tweets", (req, res) => {
 app.get("/tweets", (req, res) => {
     const answer = [];
     let count = 1;
-    for (let i of tweets) {
+    for (const i of tweets) {
         if (count > 10) {
             break;
         }
