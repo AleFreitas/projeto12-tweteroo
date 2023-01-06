@@ -45,8 +45,7 @@ app.post("/tweets", (req, res) => {
     //posting tweet in server memory
     users.forEach(item => {
         if (item.username.includes(tweetData.username)) {
-            tweets.unshift({ ...tweetData, avatar: item.avatar });
-            console.log(tweets);
+            tweets.unshift({ username: tweetData.username, tweet: tweetData.tweet, avatar: item.avatar });
             res.status(201).send("OK");
         }
     });
@@ -68,7 +67,7 @@ app.get("/tweets", (req, res) => {
 
 app.get("/tweets/:username", (req, res) => {
     const tweetUser = req.params.username
-    res.send(tweets.filter(item => item.username === tweetUser))
+    res.send(tweets.filter(item => item.username === tweetUser)).status(200)
 })
 
 app.listen(PORT, () => {
