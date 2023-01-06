@@ -58,11 +58,11 @@ app.post("/tweets", (req, res) => {
 app.get("/tweets", (req, res) => {
     const answer = [];
     let count = 1;
-    for (let i = 0; i < tweets.length; i++) {
+    for (let i of tweets) {
         if (count > 10) {
             break;
         }
-        answer.push(tweets[i]);
+        answer.push(i);
         count++;
     }
     res.send(answer);
