@@ -45,7 +45,7 @@ app.post("/tweets", (req, res) => {
     //posting tweet in server memory
     users.forEach(item => {
         if (item.username.includes(tweetData.username)) {
-            tweets.unshift({ username: tweetData.username, tweet: tweetData.tweet, avatar: item.avatar });
+            tweets.unshift({ username: tweetData.username, avatar: item.avatar, tweet: tweetData.tweet});
             res.status(201).send("OK");
         }
     });
