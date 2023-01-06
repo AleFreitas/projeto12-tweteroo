@@ -26,7 +26,7 @@ app.post("/sign-up", (req, res) => {
     }
     //posting user in server memory
     users.push(signUpData);
-    res.send("OK");
+    res.status(201).send("OK");
 })
 
 app.post("/tweets", (req, res) => {
@@ -49,7 +49,7 @@ app.post("/tweets", (req, res) => {
         if (item.username.includes(tweetData.username)) {
             tweets.unshift({ ...tweetData, avatar: item.avatar });
             console.log(tweets);
-            res.send("OK");
+            res.status(201).send("OK");
         }
     })
     res.send("UNAUTHORIZED")
