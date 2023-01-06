@@ -11,6 +11,19 @@ const users = []
 
 app.post("/sign-up", (req, res) => {
     const signUpData = req.body;
+    const signUpKeys = Object.keys(signUpData);
+    //username or avatar doesn't exist
+    if((signUpKeys.indexOf("username") === (-1)) || (signUpKeys.indexOf("avatar") === (-1))){
+        res.sendStatus(400)
+    }
+    //username or avatar empty
+    if(signUpData.username.length === 0 || signUpData.avatar.length === 0){
+        res.sendStatus(400)
+    }
+    //username or avatar is not string
+    if(typeof signUpData.avatar === "string" || typeof signUpData.username === "string"){
+        res.sendStatus(400)
+    }
     users.push(signUpData);
     res.send("OK");
 })
