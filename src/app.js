@@ -9,8 +9,25 @@ app.use(express.json())
 const tweets = []
 const users = []
 
+app.post("/sign-up", (req, res) => {
+    const signUpData = req.body;
+    users.push(signUpData);
+    res.send("OK");
+})
+
+app.post("/tweets", (req, res) => {
+    const tweetData = req.body;
+    users.forEach(item => {
+        if (item.username.includes(tweetData.username)) {
+            tweets.unshift({ ...tweetData, avatar: item.avatar })
+            console.log(tweets)
+            res.send("OK")
+        }
+    })
+    res.send("UNAUTHORIZED")
+})
+
 app.get("/tweets", (req, res) => {
-    // Manda como resposta o texto 'Hello World'
     const answer = [];
     let count = 1;
     for (let i = 0; i < tweets.length; i++) {
@@ -22,24 +39,6 @@ app.get("/tweets", (req, res) => {
     }
     res.send(answer);
 });
-
-app.post("/sign-up", (req,res) => {
-    const signUpData = req.body;
-    users.push(signUpData);
-    res.send("OK");
-})
-
-app.post("/tweets", (req,res) => {
-    const tweetData = req.body;
-    users.forEach(item => {
-        if(item.username.includes(tweetData.username)){
-            tweets.unshift({...tweetData,avatar:item.avatar})
-            console.log(tweets)
-            res.send("OK")
-        }
-    })
-    res.send("UNAUTHORIZED")
-})
 
 app.listen(PORT, () => {
     console.log("Connected to API")
