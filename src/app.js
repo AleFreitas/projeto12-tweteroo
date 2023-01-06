@@ -4,25 +4,25 @@ import cors from 'cors';
 const PORT = 5000;
 const app = express();
 app.use(cors());
-app.use(express.json())
+app.use(express.json());
 
-const tweets = []
-const users = []
+const tweets = [];
+const users = [];
 
 app.post("/sign-up", (req, res) => {
     const signUpData = req.body;
     //username or avatar doesn't exist
     const signUpKeys = Object.keys(signUpData);
     if((signUpKeys.indexOf("username") === (-1)) || (signUpKeys.indexOf("avatar") === (-1))){
-        res.sendStatus(400)
+        res.sendStatus(400);
     }
     //username or avatar is empty
     if(signUpData.username.length === 0 || signUpData.avatar.length === 0){
-        res.sendStatus(400)
+        res.sendStatus(400);
     }
     //username or avatar is not string
     if(typeof signUpData.avatar !== "string" || typeof signUpData.username !== "string"){
-        res.sendStatus(400)
+        res.sendStatus(400);
     }
     //posting user in server memory
     users.push(signUpData);
@@ -38,11 +38,11 @@ app.post("/tweets", (req, res) => {
     }
     //tweet is empty
     if(tweetData.tweet.length === 0){
-        res.sendStatus(400)
+        res.sendStatus(400);
     }
     //tweet is not string
     if(typeof tweetData.tweet !== "string"){
-        res.sendStatus(400)
+        res.sendStatus(400);
     }
     //posting tweet in server memory
     users.forEach(item => {
@@ -52,7 +52,7 @@ app.post("/tweets", (req, res) => {
             res.status(201).send("OK");
         }
     })
-    res.status(401).send("UNAUTHORIZED")
+    res.status(401).send("UNAUTHORIZED");
 })
 
 app.get("/tweets", (req, res) => {
@@ -69,5 +69,5 @@ app.get("/tweets", (req, res) => {
 });
 
 app.listen(PORT, () => {
-    console.log("Connected to API")
+    console.log("Connected to API");
 }) 
