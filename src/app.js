@@ -65,9 +65,10 @@ app.get("/tweets", (req, res) => {
     res.send(answer);
 });
 
-app.get("/tweets/:username", (req, res) => {
-    const tweetUser = req.params.username
-    res.send(tweets.filter(item => item.username === tweetUser)).status(200)
+app.get("/tweets/:USERNAME", (req, res) => {
+    const tweetUser = req.params.USERNAME;
+    const thisUserTweets = tweets.filter(item => item.username === tweetUser);
+    res.send(thisUserTweets).status(200);
 })
 
 app.listen(PORT, () => {
