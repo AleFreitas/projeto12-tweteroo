@@ -52,7 +52,7 @@ app.post("/tweets", (req, res) => {
             res.status(201).send("OK");
         }
     })
-    res.send("UNAUTHORIZED")
+    res.status(401).send("UNAUTHORIZED")
 })
 
 app.get("/tweets", (req, res) => {
