@@ -27,7 +27,7 @@ app.post("/sign-up", (req, res) => {
     //posting user in server memory
     users.push(signUpData);
     res.status(201).send("OK");
-})
+});
 
 app.post("/tweets", (req, res) => {
     const tweetData = req.body;
@@ -51,9 +51,9 @@ app.post("/tweets", (req, res) => {
             console.log(tweets);
             res.status(201).send("OK");
         }
-    })
+    });
     res.status(401).send("UNAUTHORIZED");
-})
+});
 
 app.get("/tweets", (req, res) => {
     const answer = [];
@@ -70,4 +70,4 @@ app.get("/tweets", (req, res) => {
 
 app.listen(PORT, () => {
     console.log("Connected to API");
-}) 
+});
